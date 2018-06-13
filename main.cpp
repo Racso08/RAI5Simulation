@@ -45,6 +45,18 @@ int main() {
     ArchivoDV1.seek(array.length()/3);
     ArchivoDV1.close();
 
+    QFile ArchivoDV2("/home/racso/Odessey/RAID5/ClionTest/DiscoVirtual2/Test.txt");
+    ArchivoDV2.open(QIODevice::WriteOnly | QIODevice::ReadOnly);
+    ArchivoDV2.write(array.mid(array.size()/3,2*(array.size()/3)));
+    ArchivoDV2.seek(array.length()/3);
+    ArchivoDV2.close();
+
+    QFile ArchivoDV3("/home/racso/Odessey/RAID5/ClionTest/DiscoVirtual3/Test.txt");
+    ArchivoDV3.open(QIODevice::WriteOnly | QIODevice::ReadOnly);
+    ArchivoDV3.write(array.mid(2*(array.size()/3),2*(array.size()/3))+ array.size()/3);
+    ArchivoDV3.seek(array.length()/3);
+    ArchivoDV3.close();
+
 
 
 
