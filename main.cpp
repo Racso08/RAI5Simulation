@@ -5,14 +5,14 @@
 int main() {
 
     /**
-     * Crea las carpetas que van a simular los discos del RAID5
+     * Crea las carpetas que van a simular los discos del RAID5 en el sistema de archivos
      */
 
-    QString path ="/home/racso/Odessey/RAID5/ClionTest";
+    QString path ="/home/racso/Odessey/RAID5/ClionTest";        ///Cambiar el path
     QString discosvirtuales[] = {"DiscoVirtual1","DiscoVirtual2","DiscoVirtual3"};
 
     for(int i = 0; i<3 ;i++){
-        QDir dir("/home/racso/Odessey/RAID5/ClionTest/"+discosvirtuales[i]);
+        QDir dir(path+"/"+discosvirtuales[i]);
         if (!dir.exists()) {
             dir.mkpath(".");
         }
@@ -26,15 +26,14 @@ int main() {
     QByteArray array;
     file.open((QIODevice::ReadOnly));
     array = file.readAll();
+    QString information = array.toBase64().constData();
     file.close();
 
     /**
      * Realizamos los calculos de la particion de los bloques
      */
 
-    ///Como tenemos 3 discos virtuales (3 carpetas), realiz
-
-
+    ///Como tenemos 3 discos virtuales (3 carpetas)
     std::cout<<array.size()<< "\n";
     std::cout<<array.length();
 
