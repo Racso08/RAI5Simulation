@@ -2,6 +2,8 @@
 #include <QString>
 #include <QDir>
 
+static int seek;
+
 int main() {
 
     /**
@@ -30,34 +32,36 @@ int main() {
     file.close();
 
     /**
-     * Realizamos los calculos de la particion de los bloques
+     * Pasamos la informacion a biniario con el fin de calcular el bloque de paridad (AUN NO FUNCIONA )
      */
 
-    ///Como tenemos 3 discos virtuales (3 carpetas)
-    std::cout<<array.size()<< "\n";
-    std::cout<<array.length();
+    QByteArray transformation = array;
+    QString infohexadecimal = QString(transformation.toHex());
+    bool ok;
+    QString infobinary =QString("%1").arg(infohexadecimal.toULongLong(&ok, 16), 5, 2, QChar('0'));
+    //std::cout<<infohexadecimal.toStdString();
+    std::cout<<infobinary.toStdString();
 
-    ///Pruebas Varias
-    QFile ArchivoDV1("/home/racso/Odessey/RAID5/ClionTest/DiscoVirtual1/Test.txt");
+    ///Como tenemos 3 discos virtuales (3 carpetas), aun falta implementar el calculo del bloque de paridad
+    int size_block = array.size()/3;
+
+    ///Escritura de archivos
+    QFile ArchivoDV1("/home/racso/Odessey/RAID5/ClionTest/DiscoVirtual1/A.txt");
     ArchivoDV1.open(QIODevice::WriteOnly | QIODevice::ReadOnly);
-    ArchivoDV1.write(array.mid(0,array.size()/3));
-    ArchivoDV1.seek(array.length()/3);
+    ArchivoDV1.write(array.mid(seek,size_block));
     ArchivoDV1.close();
+    seek += size_block;
 
-    QFile ArchivoDV2("/home/racso/Odessey/RAID5/ClionTest/DiscoVirtual2/Test.txt");
+    QFile ArchivoDV2("/home/racso/Odessey/RAID5/ClionTest/DiscoVirtual2/B.txt");
     ArchivoDV2.open(QIODevice::WriteOnly | QIODevice::ReadOnly);
-    ArchivoDV2.write(array.mid(array.size()/3,2*(array.size()/3)));
-    ArchivoDV2.seek(array.length()/3);
+    ArchivoDV2.write(array.mid(seek,size_block));
     ArchivoDV2.close();
+    seek += size_block;
 
-    QFile ArchivoDV3("/home/racso/Odessey/RAID5/ClionTest/DiscoVirtual3/Test.txt");
+    QFile ArchivoDV3("/home/racso/Odessey/RAID5/ClionTest/DiscoVirtual3/C.txt");
     ArchivoDV3.open(QIODevice::WriteOnly | QIODevice::ReadOnly);
-    ArchivoDV3.write(array.mid(2*(array.size()/3),2*(array.size()/3))+ array.size()/3);
-    ArchivoDV3.seek(array.length()/3);
+    ArchivoDV3.write(array.mid(seek,size_block));
     ArchivoDV3.close();
-
-
-
 
     return 0;
 }
