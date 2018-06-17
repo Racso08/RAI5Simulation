@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/home/racso/Odessey/RAID5/ClionTest/cmake-build-debug/Test.cpp
+Test.h
+/home/racso/Odessey/RAID5/ClionTest/cmake-build-debug/Test.h
+
+/home/racso/Odessey/RAID5/ClionTest/cmake-build-debug/Test.h
+
 /home/racso/Odessey/RAID5/ClionTest/main.cpp
 iostream
 -

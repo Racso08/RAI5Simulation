@@ -9,7 +9,7 @@ find_package(Qt5Gui REQUIRED)
 find_package(Qt5Sql REQUIRED)
 find_package(Qt5Xml REQUIRED)
 
-add_executable(ClionTest main.cpp)
+add_executable(ClionTest main.cpp cmake-build-debug/Test.cpp cmake-build-debug/Test.h)
 
 target_link_libraries(ClionTest Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Sql Qt5::Xml)
 

@@ -108,6 +108,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/racso/Odessey/RAID5/ClionTest/cmake-build-debug/Test.cpp">
+			<Option target="ClionTest"/>
+		</Unit>
+		<Unit filename="/home/racso/Odessey/RAID5/ClionTest/cmake-build-debug/Test.h">
+			<Option target="ClionTest"/>
+		</Unit>
 		<Unit filename="/home/racso/Odessey/RAID5/ClionTest/main.cpp">
 			<Option target="ClionTest"/>
 		</Unit>
